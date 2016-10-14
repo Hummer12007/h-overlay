@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE repositories SYSTEM "/dtd/repositories.dtd">
+<repositories xmlns="" version="1.0">
+  <repo quality="experimental" status="unofficial">
+    <name>h-overlay</name>
+    <description lang="en">An overlay with some random stuff</description>
+    <homepage>https://github.com/Hummer12007/h-overlay</homepage>
+    <owner type="person">
+		<email>hilobakho@gmail.com</email>
+		<name>Mykyta Holubakha</name>
+    </owner>
+    <source type="git">git://github.com/Hummer12007/h-overlay.git</source>
+    <feed>https://github.com/Hummer12007/h-overlay/commits/master.atom</feed>
+  </repo>
+</repositories>
