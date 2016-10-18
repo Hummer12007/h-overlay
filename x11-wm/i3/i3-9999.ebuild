@@ -41,10 +41,10 @@ RDEPEND="${CDEPEND}
 src_unpack() {
 	if use gaps; then
 		EGIT_REPO_URI="git://github.com/Airblader/i3"
-		use next && EGIT_BRANCH="gaps-next" || EGIT_BRANCH="gaps"
+		EGIT_BRANCH="$(usex next gaps-next gaps)"
 	else
 		EGIT_REPO_URI="git://github.com/i3/i3"
-		use next && EGIT_BRANCH="next" || EGIT_BRANCH="master"
+		EGIT_BRANCH="$(usex next next master)"
 	fi
 
 	git-r3_src_unpack
