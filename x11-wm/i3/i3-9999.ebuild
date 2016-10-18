@@ -9,13 +9,11 @@ inherit eutils toolchain-funcs git-r3
 DESCRIPTION="i3-gaps – i3 with more features"
 HOMEPAGE="http://i3wm.org/"
 SRC_URI=""
-EGIT_REPO_URI="git://github.com/Airblader/i3"
-EGIT_BRANCH="gaps"
 
 LICENSE="BSD"
 SLOT="0"
 KEYWORDS=""
-IUSE="+pango +next"
+IUSE="+pango +next +gaps"
 
 CDEPEND="dev-lang/perl
 	dev-libs/libev
@@ -41,7 +39,13 @@ RDEPEND="${CDEPEND}
 	dev-perl/JSON-XS"
 
 src_unpack() {
-	use next && EGIT_BRANCH="gaps-next"
+	if use gaps; then
+		EGIT_REPO_URI="git://github.com/Airblader/i3"
+		use next && EGIT_BRANCH="gaps-next" || EGIT_BRANCH="gaps"
+	else
+		EGIT_REPO_URI="git://github.com/i3/i3"
+		use next && EGIT_BRANCH="next" || EGIT_BRANCH="master"
+	fi
 
 	git-r3_src_unpack
 }
