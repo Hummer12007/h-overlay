@@ -9,7 +9,7 @@ SLOT="0"
 
 KEYWORDS="~amd64 ~x86"
 SRC_URI="https://download.jetbrains.com/resharper/${PN}RS-${PV}.tar.gz"
-#RESTRICT="mirror fetch"
+RESTRICT="mirror fetch"
 
 DESCRIPTION="A C# IDE by JetBrains"
 HOMEPAGE="https://www.jetbrains.com/idea"
@@ -56,6 +56,6 @@ src_install() {
 	fperms 755 "${dir}"/bin/{rider.sh,fsnotifier{,64}}
 
 	make_wrapper "${PN}" "${dir}/bin/${PN}.sh"
-	newicon "bin/${PN}.png" "${PN}.png"
+	newicon "bin/Rider_128.png" "${PN}.png"
 	make_desktop_entry "${PN}" "Rider" "${PN}" "Development;IDE;"
 }
