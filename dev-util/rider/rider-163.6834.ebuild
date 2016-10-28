@@ -12,10 +12,10 @@ SRC_URI="https://download.jetbrains.com/resharper/${PN}RS-${PV}.tar.gz"
 RESTRICT="mirror fetch strip"
 
 DESCRIPTION="A C# IDE by JetBrains"
-HOMEPAGE="https://www.jetbrains.com/idea"
+HOMEPAGE="https://www.jetbrains.com/rider"
 
 LICENSE="IDEA
-	|| ( IDEA_Academic IDEA_Classroom IDEA_OpenSource IDEA_Personal )"
+	|| ( IDEA_Academic IDEA_Classroom IDEA_OpenSource IDEA_Personal )" # FIXME
 IUSE="-custom-jdk"
 
 DEPEND=""
