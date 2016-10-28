@@ -53,7 +53,7 @@ src_install() {
 
 	insinto "${dir}"
 	doins -r *
-	fperms 755 "${dir}"/bin/{rider.sh,fsnotifier{,64}}
+	fperms 755 "${dir}"/bin/{*.sh,fsnotifier{,64}} "${dir}"/lib/ReSharperHost/*.sh
 
 	make_wrapper "${PN}" "${dir}/bin/${PN}.sh"
 	newicon "bin/Rider_128.png" "${PN}.png"
