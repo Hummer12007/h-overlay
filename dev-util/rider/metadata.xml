@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+<longdescription lang="en">
+	A C# IDE on IDEA platform.
+</longdescription>
+<use>
+	<flag name="custom-jdk">Install and use IntelliJ's custom JRE.</flag>
+</use>
+</pkgmetadata>
