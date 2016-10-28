@@ -23,7 +23,7 @@ RDEPEND="${DEPEND}
 	>=virtual/jdk-1.7:*"
 S="${WORKDIR}/${PN}RS-${PV}"
 
-QA_PREBUILT="opt/${PN}-${MY_PV}/*"
+QA_PREBUILT="opt/${P}/*"
 
 src_prepare() {
 	if ! use amd64; then
