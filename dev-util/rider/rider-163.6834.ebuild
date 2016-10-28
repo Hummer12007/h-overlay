@@ -7,9 +7,9 @@ inherit eutils versionator
 
 SLOT="0"
 
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64"
 SRC_URI="https://download.jetbrains.com/resharper/${PN}RS-${PV}.tar.gz"
-RESTRICT="mirror fetch strip"
+RESTRICT="mirror fetch strip splitdebug"
 
 DESCRIPTION="A C# IDE by JetBrains"
 HOMEPAGE="https://www.jetbrains.com/rider"
@@ -26,26 +26,12 @@ S="${WORKDIR}/${PN}RS-${PV}"
 QA_PREBUILT="opt/${P}/*"
 
 src_prepare() {
-	if ! use amd64; then
-		rm -r plugins/tfsIntegration/lib/native/linux/x86_64 || die
-	fi
-	if ! use arm; then
-		rm bin/fsnotifier-arm || die
-		rm -r plugins/tfsIntegration/lib/native/linux/arm || die
-	fi
-	if ! use ppc; then
-		rm -r plugins/tfsIntegration/lib/native/linux/ppc || die
-	fi
-	if ! use x86; then
-		rm -r plugins/tfsIntegration/lib/native/linux/x86 || die
-	fi
 	if ! use custom-jdk; then
 		if [[ -d jre ]]; then
 			rm -r jre || die
 		fi
 	fi
-	rm -r plugins/tfsIntegration/lib/native/solaris || die
-	rm -r plugins/tfsIntegration/lib/native/hpux || die
+	rm -r plugins/tfsIntegration/lib/native/{aix,win32} || die
 }
 
 src_install() {
@@ -53,7 +39,7 @@ src_install() {
 
 	insinto "${dir}"
 	doins -r *
-	fperms 755 "${dir}"/bin/{*.sh,fsnotifier{,64}} "${dir}"/lib/ReSharperHost/*.sh
+	fperms 755 "${dir}"/bin/{{rider,inspect}.sh,fsnotifier{,64}} "${dir}"/lib/ReSharperHost/{{dupfinder,inspectcode,JetBrains.ReSharper.Host,runtime}.sh,linux-x64/mono/bin/mono-sgen}
 
 	make_wrapper "${PN}" "${dir}/bin/${PN}.sh"
 	newicon "bin/Rider_128.png" "${PN}.png"
