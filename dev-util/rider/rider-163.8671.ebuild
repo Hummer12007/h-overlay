@@ -9,7 +9,7 @@ SLOT="0"
 
 KEYWORDS="~amd64"
 SRC_URI="https://download.jetbrains.com/resharper/${PN}RS-${PV}.tar.gz"
-RESTRICT="mirror fetch strip splitdebug"
+RESTRICT="strip splitdebug"
 
 DESCRIPTION="A C# IDE by JetBrains"
 HOMEPAGE="https://www.jetbrains.com/rider"
