@@ -21,7 +21,7 @@ IUSE="-custom-jdk"
 DEPEND=""
 RDEPEND="${DEPEND}
 	>=virtual/jdk-1.7:*"
-S="${WORKDIR}/${PN}RS-${PV}"
+S="${WORKDIR}/${P/rider/Rider}"
 
 QA_PREBUILT="opt/${P}/*"
 
@@ -42,6 +42,6 @@ src_install() {
 	fperms 755 "${dir}"/bin/{{rider,inspect}.sh,fsnotifier{,64}} "${dir}"/lib/ReSharperHost/{{dupfinder,inspectcode,JetBrains.ReSharper.Host,runtime}.sh,linux-x64/mono/bin/mono-sgen}
 
 	make_wrapper "${PN}" "${dir}/bin/${PN}.sh"
-	newicon "bin/Rider_128.png" "${PN}.png"
+	newicon "bin/rider.png" "${PN}.png"
 	make_desktop_entry "${PN}" "Rider" "${PN}" "Development;IDE;"
 }
