@@ -1,22 +1,21 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI=5
+EAPI=6
 
-inherit eutils toolchain-funcs git-r3
+inherit autotools git-r3
 
-DESCRIPTION="i3-gaps – i3 with more features"
+DESCRIPTION="An improved dynamic tiling window manager"
 HOMEPAGE="http://i3wm.org/"
 SRC_URI=""
 
 LICENSE="BSD"
 SLOT="0"
 KEYWORDS=""
-IUSE="+pango +next +gaps"
+IUSE="doc +gaps +next"
 
-CDEPEND="dev-lang/perl
-	dev-libs/libev
+CDEPEND="dev-libs/libev
 	dev-libs/libpcre
 	>=dev-libs/yajl-2.0.3
 	x11-libs/libxcb[xkb]
@@ -27,14 +26,13 @@ CDEPEND="dev-lang/perl
 	x11-libs/xcb-util-keysyms
 	x11-libs/xcb-util-wm
 	x11-libs/xcb-util-xrm
-	pango? (
-		>=x11-libs/pango-1.30.0[X]
-		>=x11-libs/cairo-1.12.2[X,xcb]
-	)"
+	>=x11-libs/cairo-1.14.4[X,xcb]
+	>=x11-libs/pango-1.30.0[X]"
 DEPEND="${CDEPEND}
-	app-text/asciidoc
+	doc? ( app-text/asciidoc app-text/xmlto dev-lang/perl )
 	virtual/pkgconfig"
 RDEPEND="${CDEPEND}
+	dev-lang/perl
 	dev-perl/AnyEvent-I3
 	dev-perl/JSON-XS"
 
@@ -51,27 +49,32 @@ src_unpack() {
 }
 
 src_prepare() {
-	if ! use pango; then
-		sed -i common.mk -e '/PANGO/d' || die
+	default
+
+	if ! use doc ; then
+		sed -e '/AC_PATH_PROG(\[PATH_ASCIIDOC/d' -i configure.ac || die
 	fi
+	eautoreconf
 
 	cat <<- EOF > "${T}"/i3wm
 		#!/bin/sh
 		exec /usr/bin/i3
 	EOF
+}
 
-	epatch_user #471716
+src_configure() {
+	local myeconfargs=( --enable-debug=no )  # otherwise injects -O0 -g
+	econf "${myeconfargs[@]}"
 }
 
 src_compile() {
-	emake V=1 CC="$(tc-getCC)" AR="$(tc-getAR)"
-	emake mans
+	emake -C "${CBUILD}"
 }
 
 src_install() {
-	default
-	dohtml -r docs/*
-	doman man/*.1
+	emake -C "${CBUILD}" DESTDIR="${D}" install
+	einstalldocs
+
 	exeinto /etc/X11/Sessions
 	doexe "${T}"/i3wm
 }
