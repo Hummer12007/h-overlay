@@ -127,6 +127,7 @@ src_configure() {
 	fi
 
 	local mycmakeargs=(
+		-DENABLE_ALLINONE_BUILD=OFF
 		-DENABLE_API_TESTS=OFF
 		-DENABLE_DEVICE_ORIENTATION=$(usex orientation)
 		-DENABLE_GEOLOCATION=$(usex geolocation)
