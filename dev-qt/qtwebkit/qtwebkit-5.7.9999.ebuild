@@ -9,7 +9,7 @@ USE_RUBY="ruby20 ruby21 ruby22 ruby23"
 
 inherit check-reqs cmake-utils eutils flag-o-matic python-any-r1 ruby-single toolchain-funcs versionator git-r3
 
-MY_P="qtwebkit-tp5" # FIXME: ${PV}
+MY_P="qtwebkit-${PV}" # FIXME: ${PV}
 DESCRIPTION="Open source web browser engine"
 EGIT_REPO_URI="https://github.com/annulen/webkit.git"
 QV="5.2" # Minimum Qt version
