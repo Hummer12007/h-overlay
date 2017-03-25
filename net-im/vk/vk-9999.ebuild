@@ -25,7 +25,7 @@ DEPEND="
 "
 
 src_compile() {
-	dub build
+	dub build -v
 }
 
 src_install() {
