@@ -20,7 +20,7 @@ RDEPEND="
 "
 DEPEND="
 	dev-util/dub
-	dev-lang/dlang-tools[rdmd]
+	dev-util/dlang-tools[rdmd]
 	${DEPEND}
 "
 
