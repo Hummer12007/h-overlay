@@ -7,7 +7,7 @@ CMAKE_MAKEFILE_GENERATOR="ninja"
 PYTHON_COMPAT=( python2_7 )
 USE_RUBY="ruby20 ruby21 ruby22 ruby23"
 
-inherit check-reqs cmake-utils eutils flag-o-matic python-any-r1 ruby-single toolchain-funcs versionator git-r3
+inherit check-reqs cmake-utils eutils flag-o-matic python-any-r1 ruby-single toolchain-funcs versionator git-r3 qmake-utils
 
 MY_P="qtwebkit-${PV}" # FIXME: ${PV}
 DESCRIPTION="Open source web browser engine"
@@ -52,7 +52,7 @@ RDEPEND="
 		>=media-libs/gst-plugins-bad-1.6.0:1.0 )
 	hyphen? ( dev-libs/hyphen )
 	multimedia? ( >=dev-qt/qtmultimedia-${QV}[widgets] )
-	opengl? ( >=dev-qt/qtopengl-${QV} )
+	>=dev-qt/qtopengl-${QV}
 	orientation? ( >=dev-qt/qtsensors-${QV} )
 	printsupport? ( >=dev-qt/qtprintsupport-${QV} )
 	X? (
@@ -134,6 +134,7 @@ src_configure() {
 		-DENABLE_JIT=$(usex jit)
 		-DENABLE_NETSCAPE_PLUGIN_API=$(usex nsplugin)
 		-DENABLE_OPENGL=$(usex opengl)
+		-DINSTALL_INTERFACE=$(qt5_get_headerdir)
 		-DUSE_GSTREAMER=$(usex gstreamer)
 		-DUSE_QT_MULTIMEDIA=$(usex multimedia)
 		-DENABLE_X11_TARGET=$(usex X)
