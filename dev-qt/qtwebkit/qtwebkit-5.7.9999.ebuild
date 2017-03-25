@@ -134,7 +134,7 @@ src_configure() {
 		-DENABLE_JIT=$(usex jit)
 		-DENABLE_NETSCAPE_PLUGIN_API=$(usex nsplugin)
 		-DENABLE_OPENGL=$(usex opengl)
-		-DINSTALL_INTERFACE=$(qt5_get_headerdir)
+		-DKDE_INSTALL_INCLUDEDIRS=$(qt5_get_headerdir)
 		-DUSE_GSTREAMER=$(usex gstreamer)
 		-DUSE_QT_MULTIMEDIA=$(usex multimedia)
 		-DENABLE_X11_TARGET=$(usex X)
