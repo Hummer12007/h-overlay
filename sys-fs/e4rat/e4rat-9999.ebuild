@@ -38,6 +38,11 @@ pkg_setup() {
 		init /usr/lib/systemd/systemd"
 }
 
+src_prepare() {
+	cmake-utils_src_prepare
+	sed -i 's%/usr/lib/systemd/systemd%/sbin/init%' e4rat-lite.conf ||
+		die "Failed to sed makefile"
+}
 src_install() {
 	cmake-utils_src_install
 	# relocate binaries to /sbin. If someone knows of a better way to do it
