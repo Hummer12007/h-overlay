@@ -5,7 +5,7 @@ EAPI="6"
 
 PYTHON_COMPAT=( python3_{4,5,6} )
 
-inherit distutils-r1 git-r3 python-r1
+inherit distutils-r1 git-r3
 
 DESCRIPTION="A utility to manage ebuilds in overlays"
 HOMEPAGE="https://wiki.gentoo.org/User:Hummer12007/pomu"
@@ -17,14 +17,14 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-REQUIRED_USE="${PYTHON_REQUIRED_USE}"
-
-DEPEND="${PYTHON_DEPS}"
-RDEPEND="${DEPEND}
-	app-portage/repoman
-	dev-python/click
-	dev-python/git-python
-	sys-apps/portage
+DEPEND="
+	dev-python/setuptools[${PYTHON_USEDEP}]
+"
+RDEPEND="
+	app-portage/repoman[${PYTHON_USEDEP}]
+	dev-python/click[${PYTHON_USEDEP}]
+	dev-python/git-python[${PYTHON_USEDEP}]
+	sys-apps/portage[${PYTHON_USEDEP}]
 "
 
 RESTRICT="test" # verify that tests work
