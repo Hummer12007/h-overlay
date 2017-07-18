@@ -19,13 +19,11 @@ SLOT=5
 LICENSE="LGPL-2+ BSD"
 KEYWORDS="~amd64 ~x86"
 
-IUSE="+geolocation +gstreamer +jit +hyphen multimedia nsplugin orientation opengl +printsupport +webp X"
-# qml webchannel
-# qml? ( >=dev-qt/qtdeclarative-${QV} )
-# webchannel? ( >=dev-qt/qtwebchannel-${QV} )
+IUSE="+geolocation +gstreamer +jit +hyphen multimedia nsplugin orientation opengl +printsupport qml +webp X"
 
 REQUIRED_USE="
 	nsplugin? ( X )
+	qml? ( opengl )
 	?? ( gstreamer multimedia )
 "
 
@@ -41,7 +39,6 @@ RDEPEND="
 	>=dev-qt/qtcore-${QV}
 	>=dev-qt/qtgui-${QV}
 	>=dev-qt/qtnetwork-${QV}
-	>=dev-qt/qtsql-${QV}
 	>=dev-qt/qtwidgets-${QV}
 
 	geolocation? ( >=dev-qt/qtpositioning-${QV} )
@@ -52,9 +49,12 @@ RDEPEND="
 		>=media-libs/gst-plugins-bad-1.6.0:1.0 )
 	hyphen? ( dev-libs/hyphen )
 	multimedia? ( >=dev-qt/qtmultimedia-${QV}[widgets] )
-	>=dev-qt/qtopengl-${QV}
+	opengl? ( >=dev-qt/qtopengl-${QV} )
 	orientation? ( >=dev-qt/qtsensors-${QV} )
 	printsupport? ( >=dev-qt/qtprintsupport-${QV} )
+	qml? ( 
+		>=dev-qt/qtdeclarative-${QV}
+		>=dev-qt/qtwebchannel-${QV}[qml] )
 	X? (
 		x11-libs/libX11
 		x11-libs/libXcomposite
@@ -128,14 +128,14 @@ src_configure() {
 
 	local mycmakeargs=(
 		-DENABLE_ALLINONE_BUILD=OFF
+		-DINCLUDE_INSTALL_DIR=$(qt5_get_headerdir)
 		-DENABLE_API_TESTS=OFF
 		-DENABLE_DEVICE_ORIENTATION=$(usex orientation)
 		-DENABLE_GEOLOCATION=$(usex geolocation)
 		-DENABLE_JIT=$(usex jit)
 		-DENABLE_NETSCAPE_PLUGIN_API=$(usex nsplugin)
 		-DENABLE_OPENGL=$(usex opengl)
-		-DKDE_INSTALL_INCLUDEDIR=$(qt5_get_headerdir)
-		-DINCLUDE_INSTALL_DIR=$(qt5_get_headerdir)
+		-DENABLE_WEBKIT2=$(usex qml)
 		-DUSE_GSTREAMER=$(usex gstreamer)
 		-DUSE_QT_MULTIMEDIA=$(usex multimedia)
 		-DENABLE_X11_TARGET=$(usex X)
