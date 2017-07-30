@@ -23,8 +23,10 @@ DEPEND="
 RDEPEND="
 	app-portage/repoman[${PYTHON_USEDEP}]
 	dev-python/click[${PYTHON_USEDEP}]
+	dev-python/curtsies[${PYTHON_USEDEP}]
 	dev-python/git-python[${PYTHON_USEDEP}]
 	dev-python/patch[${PYTHON_USEDEP}]
+	dev-python/pbraw[${PYTHON_USEDEP}]
 	sys-apps/portage[${PYTHON_USEDEP}]
 "
 
