@@ -29,5 +29,3 @@ RDEPEND="
 	dev-python/pbraw[${PYTHON_USEDEP}]
 	sys-apps/portage[${PYTHON_USEDEP}]
 "
-
-RESTRICT="test" # verify that tests work
