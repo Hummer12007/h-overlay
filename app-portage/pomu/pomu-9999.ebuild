@@ -29,3 +29,9 @@ RDEPEND="
 	dev-python/pbraw[${PYTHON_USEDEP}]
 	sys-apps/portage[${PYTHON_USEDEP}]
 "
+
+src_install() {
+	default
+
+	doman doc/pomu.1
+}
