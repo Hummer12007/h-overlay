@@ -31,7 +31,7 @@ RDEPEND="
 "
 
 src_install() {
-	default
+	distutils-r1_src_install
 
 	doman doc/pomu.1
 }
