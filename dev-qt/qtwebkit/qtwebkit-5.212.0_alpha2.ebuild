@@ -5,7 +5,7 @@
 EAPI=6
 CMAKE_MAKEFILE_GENERATOR="ninja"
 PYTHON_COMPAT=( python2_7 )
-USE_RUBY="ruby20 ruby21 ruby22 ruby23"
+USE_RUBY="ruby20 ruby21 ruby22 ruby23 ruby24"
 
 inherit check-reqs cmake-utils eutils flag-o-matic python-any-r1 ruby-single toolchain-funcs versionator
 
