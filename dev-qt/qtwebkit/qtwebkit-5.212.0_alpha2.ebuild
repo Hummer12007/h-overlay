@@ -7,11 +7,11 @@ CMAKE_MAKEFILE_GENERATOR="ninja"
 PYTHON_COMPAT=( python2_7 )
 USE_RUBY="ruby20 ruby21 ruby22 ruby23"
 
-inherit check-reqs cmake-utils eutils flag-o-matic python-any-r1 ruby-single toolchain-funcs versionator git-r3 qmake-utils
+inherit check-reqs cmake-utils eutils flag-o-matic python-any-r1 ruby-single toolchain-funcs versionator
 
-MY_P="qtwebkit-${PV}" # FIXME: ${PV}
+MY_P="qtwebkit-5.212.0-alpha2" # FIXME: ${PV}
 DESCRIPTION="Open source web browser engine"
-EGIT_REPO_URI="https://github.com/annulen/webkit.git"
+SRC_URI="https://github.com/annulen/webkit/releases/download/${MY_P}/${MY_P}.tar.xz"
 QV="5.2" # Minimum Qt version
 
 SLOT=5
