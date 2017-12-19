@@ -43,7 +43,7 @@ RDEPEND="
 		>=dev-libs/glib-2.36:2
 		>=media-libs/gstreamer-1.2:1.0
 		>=media-libs/gst-plugins-base-1.2:1.0
-		>=media-libs/gst-plugins-bad-1.6.0:1.0 )
+		>=media-libs/gst-plugins-bad-1.6.0:1.0
 	)
 	hyphen? ( dev-libs/hyphen )
 	multimedia? ( >=dev-qt/qtmultimedia-${QT_MIN_VER}[widgets] )
