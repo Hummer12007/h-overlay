@@ -7,11 +7,13 @@ CMAKE_MAKEFILE_GENERATOR="ninja"
 PYTHON_COMPAT=( python2_7 )
 QT_MIN_VER="5.6.2:5"
 USE_RUBY="ruby22 ruby23 ruby24"
-inherit check-reqs cmake-utils flag-o-matic python-any-r1 qmake-utils ruby-single toolchain-funcs
+inherit check-reqs cmake-utils flag-o-matic git-r3 python-any-r1 qmake-utils ruby-single toolchain-funcs
 
 DESCRIPTION="Open source web browser engine"
 HOMEPAGE="https://www.qt.io/"
-SRC_URI="https://github.com/annulen/webkit/releases/download/${P/_/-}/${P/_/-}.tar.xz"
+#SRC_URI="https://github.com/annulen/webkit/releases/download/${P/_/-}/${P/_/-}.tar.xz"
+EGIT_REPO_URI="https://code.qt.io/qt/qtwebkit.git"
+EGIT_BRANCH="5.212"
 
 SLOT=5
 
@@ -77,7 +79,7 @@ DEPEND="${RDEPEND}
 	virtual/pkgconfig
 "
 
-S="${WORKDIR}/${P/_/-}"
+#S="${WORKDIR}/${P/_/-}"
 
 CHECKREQS_DISK_BUILD="1G" # Debug build requires much more see bug #417307
 
