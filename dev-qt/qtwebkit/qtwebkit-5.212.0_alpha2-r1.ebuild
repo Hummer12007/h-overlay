@@ -6,7 +6,7 @@ EAPI=6
 CMAKE_MAKEFILE_GENERATOR="ninja"
 PYTHON_COMPAT=( python2_7 )
 QT_MIN_VER="5.6.2:5"
-USE_RUBY="ruby22 ruby23 ruby24"
+USE_RUBY="ruby22 ruby23 ruby24 ruby25"
 inherit check-reqs cmake-utils flag-o-matic git-r3 python-any-r1 qmake-utils ruby-single toolchain-funcs
 
 DESCRIPTION="Open source web browser engine"
@@ -122,7 +122,9 @@ src_configure() {
 
 	local ruby_interpreter=""
 
-	if has_version "virtual/rubygems[ruby_targets_ruby24]"; then
+	if has_version "virtual/rubygems[ruby_targets_ruby25]"; then
+		ruby_interpreter="-DRUBY_EXECUTABLE=$(type -P ruby25)"
+	elif has_version "virtual/rubygems[ruby_targets_ruby24]"; then
 		ruby_interpreter="-DRUBY_EXECUTABLE=$(type -P ruby24)"
 	elif has_version "virtual/rubygems[ruby_targets_ruby23]"; then
 		ruby_interpreter="-DRUBY_EXECUTABLE=$(type -P ruby23)"
